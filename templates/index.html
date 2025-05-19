@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎵 BPM Detector</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><circle cx="12" cy="15" r="2"/></svg>');
+            background-repeat: repeat;
+            background-size: 60px;
+        }
+        .vinyl-spin {
+            animation: spin 4s linear infinite;
+        }
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .glossy {
+            background: linear-gradient(145deg, rgba(255,255,255,0.2), rgba(255,255,255,0));
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2), inset 0 1px 2px rgba(255,255,255,0.3);
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-pink-200 via-purple-300 to-blue-200 min-h-screen flex items-center justify-center p-4">
+    <div class="relative bg-white bg-opacity-20 backdrop-blur-lg rounded-2xl p-8 max-w-md w-full glossy border border-white border-opacity-30">
+        <div class="absolute top-4 right-4 w-12 h-12 opacity-30 vinyl-spin">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="text-purple-600">
+                <circle cx="12" cy="12" r="10"/>
+                <circle cx="12" cy="12" r="3" fill="currentColor"/>
+            </svg>
+        </div>
+        <h1 class="text-3xl font-bold text-purple-800 text-center mb-6 flex items-center justify-center gap-2">
+            <span>🎵</span> ОПРЕДЕЛИТЕЛЬ BPM 2000
+        </h1>
+        <div class="space-y-6">
+            <div>
+                <label for="audioInput" class="block text-sm font-medium text-purple-900 mb-2">Choose Audio File</label>
+                <input type="file" id="audioInput" accept="audio/*" class="w-full p-3 rounded-lg bg-pink-100 bg-opacity-50 text-purple-900 border border-purple-300 focus:outline-none focus:ring-2 focus:ring-purple-400 transition duration-300 glossy">
+            </div>
+            <button onclick="uploadFile()" class="w-full py-3 px-4 bg-purple-400 hover:bg-purple-500 text-white font-semibold rounded-lg transition duration-300 flex items-center justify-center gap-2 glossy">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 3a1 1 0 00-1 1v5.586L6.707 7.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l4-4a1 1 0 00-1.414-1.414L11 9.586V4a1 1 0 00-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd" />
+                </svg>
+                Upload
+            </button>
+        </div>
+        <div id="result" class="mt-6 text-center text-purple-900 font-medium"></div>
+    </div>
+    <script>
+        function uploadFile() {
+            const fileInput = document.getElementById('audioInput');
+            const resultDiv = document.getElementById('result');
+            if (fileInput.files.length > 0) {
+                resultDiv.innerHTML = `Processing ${fileInput.files[0].name}...`;
+                // Add your BPM detection logic here
+            } else {
+                resultDiv.innerHTML = 'Please select an audio file!';
+            }
+        }
+    </script>
+</body>
+</html>
